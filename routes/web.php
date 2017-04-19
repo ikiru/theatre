@@ -49,10 +49,14 @@ Auth::routes();
 
 /*
 |--------------------------------------------------------------------------
-|Backend Routes
+|Portal Routes -> Backend of the site
 |--------------------------------------------------------------------------
 |
 */
-Route::get('profile','UserController@profile');
-Route::post('profile','UserController@update_avatar');
+
 Route::get('/portal',function(){return view('/portal/home');});
+
+Route::get('/profile','UserController@profile');
+Route::post('/profile','UserController@update_avatar');
+
+Route::get('/donor',function(){return view('/portal/booster/donor');});

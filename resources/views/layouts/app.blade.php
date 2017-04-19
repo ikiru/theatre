@@ -53,6 +53,8 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}<span class="caret"></span>
@@ -79,6 +81,13 @@
         </nav>
 
         @yield('content')
+          {{-- Portal sub menu --}}
+          <ul nav class="nav navbar navbar-inverse">
+            <div class="container">
+            {{ menu('portal','bootstrap') }}
+          </div>
+        </nav>
+      </ul>
     </div>
 
     <!-- Scripts -->
