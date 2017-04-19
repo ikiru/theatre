@@ -2,6 +2,11 @@
 
 namespace App;
 
+use App\State;
+use App\District;
+use App\School;
+
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +20,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'role_id',
+        'email',
+        'avatar',
+        'password',
+        'remember_token',
+        'created_at',
+        'updated_at',
+        'firstname',
+        'lastname',
+        'address',
+        'city',
+        'state_id',
+        'zip',
+        'phone',
+        'district_id',
+        'school_id'
     ];
 
     /**
@@ -26,4 +48,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function state()
+    {
+      return $this->belongsTo(State::class);
+
+    }
+
+    public function district()
+    {
+      return $this->belongsTo(District::class);
+
+    }
+
+    public function School()
+    {
+      return $this->belongsTo(School::class);
+
+    }
 }

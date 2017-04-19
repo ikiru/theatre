@@ -1,52 +1,24 @@
-<h1>Profile</h1>
+@extends('layouts.app')
+{{-- @include('partials.needs') --}}
 
-{!! Form::open(['method'=>'POST','action'=>'UserController@store'])!!}
+ @section('content')
+ <div class="container">
+     <div class="row">
+         <div class="col-md-10 col-md-offset-1">
+                  <img scr="uploads/avatar"{{ $user->Avatar }} style="width:150px; height:150px; float:left; border-radius:50% margin-right:25px;">
+                 <h2> {{ $user->firstname }}</h2>
+                 <h2> {{ $user->lastname }}'s Profile</h2>
 
-    <div class="form-group">
+                 <form enctype="multipart/form-data" action="/profile" method="POST">
+                   <label>Update Profile Image</label>
+                   <input type="file" name="avatar">
+                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                   <input type="submit" class="pull-right btn btn-sm btn-primary">
 
-      {!! Form::radio('role_id','2',['class'=> 'form-control']) !!}Teacher
-      {!! Form::radio('role_id','3',['class'=> 'form-control']) !!}Student
-      {!! Form::radio('role_id','4',['class'=> 'form-control']) !!}Booster
-      {!! Form::radio('role_id','5',['class'=> 'form-control']) !!}Parent
+                 </form>
 
-      {!! Form::hidden('is_active',1) !!}
-      {!! Form::text('firstname',null,['class'=> 'form-control','placeholder' => 'First Name']) !!}
-      {!! Form::text('lastname',null,['class'=> 'form-control','placeholder' => "Last Name"]) !!}
-      {!! Form::text('address',null,['class'=> 'form-control','placeholder' => "Home Address"]) !!}
-      {!! Form::text('city',null,['class'=> 'form-control','placeholder' => "City"]) !!}
-      {!! Form::select('state_id',$states,['class'=> 'form-control']) !!}
-      {!! Form::text('zip',null,['class'=> 'form-control','placeholder' => "Zip"]) !!}
-      {!! Form::text('phone',null, ['class'=> 'form-control','placeholder' => "Moble Phone"]) !!}
-      {!! Form::email('email',null, ['class'=> 'form-control','placeholder' => "email"]) !!}
-      {!! Form::select('district_id',$districts,['class'=> 'form-control']) !!}
-      {!! Form::select('school_id',$schools,['class'=> 'form-control']) !!}
 
-    </div>
-
-		<div class="'form-group'">
-					{!! Form::submit('Sign up',['class' => "btn btn-primary"]) !!}
-				</div>
-
-    <div class="form-group">
-
-      {!! Form::close() !!}
-
-    </div>
-
-    @if(count($errors)>0)
-
-      <div class="alert alert-danger">
-
-        <ul>
-
-          @foreach ($errors->all() as $error)
-
-            <li>{{$error}}</li>
-
-          @endforeach
-
-        </ul>
-
-      </div>
-
-    @endif
+          </div>
+     </div>
+ </div>
+ @endsection

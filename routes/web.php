@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,9 @@ Route::get('/about',function(){return view('about');});
 Route::get('/welcome',function(){return view('welcome');});
 // Route::get('{slug}','PageController@show');
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | System Routes
@@ -42,8 +46,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -51,5 +53,6 @@ Route::get('/home', 'HomeController@index');
 |--------------------------------------------------------------------------
 |
 */
-
-Route::get('/profile',function(){return view('/portal/profile');});
+Route::get('profile','UserController@profile');
+Route::post('profile','UserController@update_avatar');
+Route::get('/portal',function(){return view('/portal/home');});
