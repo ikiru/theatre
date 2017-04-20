@@ -1,4 +1,5 @@
 
+@section('footer')
 
 <!--
 ==================================================
@@ -36,3 +37,4 @@ Footer Section Start
         </div>
     </div>
 </footer> <!-- /#footer -->
+@endsection

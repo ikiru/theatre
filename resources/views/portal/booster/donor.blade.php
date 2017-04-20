@@ -1,95 +1,183 @@
 @extends('layouts.app')
-@section('donor')
-  <div class="page-content container-fluid">
-          <div class="row">
-              <div class="col-md-12">
+@section('content')
 
-                  <div class="panel panel-bordered">
+  {{--
+  |--------------------------------------------------------------------------
+  |Col 1 - Add a New Donor
+  |--------------------------------------------------------------------------
+  |
+  --}}
+  {{-- <script>
+  $.ajax({
+    url:/fetch_donor,
+    type:'POST',
+    success:function(show_donor){
 
-                      <div class="panel-heading">
-                          <h3 class="panel-title">Add New Donor</h3>
-                      </div>
-                      <!-- /.box-header -->
-                      <!-- form start -->
-                      <form role="form" class="form-edit-add" action="http://tpm.dev/admin/donors" method="POST" enctype="multipart/form-data">
-                          <!-- PUT Method if we are editing -->
+      if(!show_donor.error){
 
-                          <!-- CSRF TOKEN -->
-                          <input type="hidden" name="_token" value="muEj2aotHOwEaHyciyNa5ApTS4aSSrj7rHItSwUD">
+        $("show-donors").html("hello it works");
 
-                          <div class="panel-body">
+      }
 
+    }
 
-                              <!-- If we are editing -->
-
-                                                              <div class="form-group ">
-                                      <label for="name">Name</label>
-                                                                          <input type="text" class="form-control" name="name" placeholder="Name" value="">
-
-
-                                                                      </div>
-                                                              <div class="form-group ">
-                                      <label for="name">Address</label>
-                                                                          <input type="text" class="form-control" name="address" placeholder="Address" value="">
+  });
+  </script> --}}
+  {{--
+  |--------------------------------------------------------------------------
+  |Col 1 - Add a New Donor
+  |--------------------------------------------------------------------------
+  |
+  --}}
 
 
-                                                                      </div>
-                                                              <div class="form-group ">
-                                      <label for="name">City</label>
-                                                                          <input type="text" class="form-control" name="city" placeholder="City" value="">
+  {{-- Create form --}}
+<div class="row">
+
+  {!! Form::open(['method'=>'POST', 'action'=>'DonorController@store']) !!}
+  <div class="container">
+
+  <div class="col-sm-6 ">
+    <div class="well">
+      <div class="form-horizontal">
+
+          {{-- <div class="form-inline"> --}}
+          {!! Form::token(); !!}
+          {!! Form::hidden('user_id','user_id') !!}
+
+          <h3>New Donor</h3>
+
+          {!! Form::label('firstname','First name:') !!}
+          {!! Form::text('firstname',null,['class'=>'form-control', 'placeholder'=>'First name of donor contact' ]); !!}
+          {!! Form::label('lastname','Last name:') !!}
+          {!! Form::text('lastname',null,['class'=>'form-control', 'placeholder'=>'Last name of donor contact' ]); !!}
+
+          <span class="input-group-addon">
+          {!! Form::radio('donor_id',1,['class'=>'form-control']); !!}
+          {!! Form::label('active_id','Active') !!}
+        </span>
+          <span class="input-group-addon">
+          {!! Form::radio('donor_id',0,['class'=>'form-control']); !!}
+          {!! Form::label('active_id','Inactive') !!}
+        </span
+        </br>
+          {!! Form::label('business_name','Business Name:') !!}
+          {!! Form::text('business_name',null,['class'=>'form-control', 'placeholder'=>'Optional' ]); !!}
+          {!! Form::label('address','Address:') !!}
+          {!! Form::text('address',null,['class'=>'form-control', 'placeholder'=>'Address' ]); !!}
+          {!! Form::label('city','City:') !!}
+          {!! Form::text('city',null,['class'=>'form-control', 'placeholder'  =>'City' ]); !!}
+          {{-- {!! Form::select('state',null,['class'=>'form-control', 'placeholder'=>'State' ]); !!} --}}
+          {!! Form::label('zip','Zip:') !!}
+          {!! Form::text('zip',null,['class'=>'form-control', 'placeholder'=>'' ]); !!}
+          {!! Form::label('phone','Phone:') !!}
+          {!! Form::text('phone',null,['class'=>'form-control', 'placeholder'=>'777-777-7777' ]); !!}
+          {!! Form::label('email','Email:') !!}
+          {!! Form::text('email',null,['class'=>'form-control', 'placeholder'=>'johndoe@email.com' ]); !!}
+
+        <span class="input-group-addon">
+          {!! Form::radio('donor_id',1,['class'=>'form-control']); !!}
+          {!! Form::label('donor_id','Business ') !!}
+        </span>
+        <span class="input-group-addon">
+          {!! Form::radio('donor_id',2,['class'=>'form-control']); !!}
+          {!! Form::label('donor_id','Individual/Family ') !!}
+        </span>
+        <span class="input-group-addon">
+          {!! Form::radio('donor_id',3,['class'=>'form-control']); !!}
+          {!! Form::label('donor_id','Private/Anonymous') !!}
+
+        </span>
+          {!! Form::textarea('notes',null,['class'=>'form-control', 'placeholder'=>'Notes' ]); !!}
+
+          {!! Form::submit('Submit',['class' => "btn btn-primary pull-right"]) !!}
+        </span>
+
+        </div>
+      </div>
+    </div>
 
 
-                                                                      </div>
-                                                              <div class="form-group ">
-                                      <label for="name">State Id</label>
-                                                                          <select class="form-control select2 select2-hidden-accessible" name="state_id" tabindex="-1" aria-hidden="true">
-                      </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-state_id-5z-container"><span class="select2-selection__rendered" id="select2-state_id-5z-container"></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+    {!! Form::close() !!}
 
 
-                                                                      </div>
-                                                              <div class="form-group ">
-                                      <label for="name">Zip</label>
-                                                                          <input type="text" class="form-control" name="zip" placeholder="Zip" value="">
+    {{--
+    |--------------------------------------------------------------------------
+    |Col 2 - Donor List
+    |--------------------------------------------------------------------------
+    |
+    --}}
 
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="well">
+          <h3>All Donors</h3>
+          <table class="table">
+            <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Business</th>
+                    <th>Edit/Delete</th>
+                  </tr>
+            </thead>
+                  <tbody id="show-donors">
+                    @if ($donors)
 
-                                                                      </div>
-                                                              <div class="form-group ">
-                                      <label for="name">Phone</label>
-                                                                          <input type="text" class="form-control" name="phone" placeholder="Phone" value="">
+                          @foreach ($donors as $donor)
 
+                              <tr>
+                                <td>{{ $donor->firstname }} </td>
+                                <td>{{ $donor->lastname }}</td>
+                                <td>{{ $donor->business_name }}</td>
+                                <td>
 
-                                                                      </div>
-                                                              <div class="form-group ">
-                                      <label for="name">Donor Type</label>
-                                                                          <select class="form-control select2 select2-hidden-accessible" name="donor_type" tabindex="-1" aria-hidden="true">
-                      </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-donor_type-xg-container"><span class="select2-selection__rendered" id="select2-donor_type-xg-container"></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-
-
-                                                                      </div>
-                                                              <div class="form-group ">
-                                      <label for="name">Is Active</label>
-                                                                          <ul class="radio">
-      </ul>
-
-                                                                      </div>
-
-                          </div><!-- panel-body -->
-
-                          <div class="panel-footer">
-                              <button type="submit" class="btn btn-primary save">Save</button>
-                          </div>
-                      </form>
-
-                      <iframe id="form_target" name="form_target" style="display:none"></iframe>
-                      <form id="my_form" action="http://tpm.dev/admin/upload" target="form_target" method="post" enctype="multipart/form-data" style="width:0;height:0;overflow:hidden">
-                          <input name="image" id="upload_file" type="file" onchange="$('#my_form').submit();this.value='';">
-                          <input type="hidden" name="type_slug" id="type_slug" value="donors">
-                          <input type="hidden" name="_token" value="muEj2aotHOwEaHyciyNa5ApTS4aSSrj7rHItSwUD">
-                      </form>
-
-                  </div>
-              </div>
-          </div>
+                                <a href="/donor/{{ $donor->id }}/edit" class="btn btn-sm btn-primary">Edit</button>
+                                <a href="/donor/{{ $donor->id }}" class="btn btn-sm btn-danger btn-primary" >Delete</button>
+                                </td>
+                            </tr>
+                          </a>
+                          @endforeach
+                        @endif
+                  </tbody>
+          </table>
+        </div>
       </div>
 
+    </div>
+
+
+  </div>
+
+</div>
 @endsection
+{{-- <script>
+$(document).ready(function(){
+  $('.hover').popover({
+    title:fetchData,
+    html:true,
+    placement:'right'
+  })
+
+  function fetchData(){
+    var fetch_data = '';
+    var element = $(this);
+    var id = element.attr("id");
+    $.ajax({
+      type:type,
+      url:"fetch.php",
+      method:"POST",
+      async:false,
+      data:{id:id}
+      success:function(data){
+        fetch_data;
+      }
+    });
+    return fetch_data;
+  }
+});
+
+</script> --}}
+
+@include('partials.footer')

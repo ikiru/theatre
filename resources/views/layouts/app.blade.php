@@ -80,7 +80,7 @@
             </div>
         </nav>
 
-        @yield('content')
+
           {{-- Portal sub menu --}}
           <ul nav class="nav navbar navbar-inverse">
             <div class="container">
@@ -89,7 +89,7 @@
         </nav>
       </ul>
     </div>
-
+    @yield('content')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
