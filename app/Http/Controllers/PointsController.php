@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Donor;
-Use App\State;
+use App\Tpoint;
+use App\Tcatagory;
+use App\Tlength;
+use App\Tposition;
 
-class DonorController extends Controller
+class PointsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +17,14 @@ class DonorController extends Controller
      */
     public function index()
     {
-        //
-        $donors = Donor::all();
-        $states = State::pluck('name','id');
+        // //
+        // $points = Tpoint::all();
+        // $catagories = Tcatagory::all();
+        // $length = Tlength::all();
+        // $postion = Tpositon::all();
 
-          return view('portal.booster.donor', compact('donors','states'));
-
+          // return view('portal.thespian.points', compact('points','catagories','length', 'postion'));
+          return view('portal.thespian.points');
     }
 
     /**
@@ -31,9 +35,6 @@ class DonorController extends Controller
     public function create()
     {
         //
-        echo "i'm a big fat muffin";
-
-        // return redirect('DonorController@index');
     }
 
     /**
@@ -45,10 +46,6 @@ class DonorController extends Controller
     public function store(Request $request)
     {
         //
-        Donor::create($request->all());
-        $donors = Donor::all();
-
-          return view('portal.booster.donor', compact('donors'));
     }
 
     /**
@@ -60,14 +57,6 @@ class DonorController extends Controller
     public function show($id)
     {
         //
-        if($id){
-          $donor = Donor::findOrFail($id);
-
-            return view('portal.booster.donor', compact('donor'));
-        }else{
-
-          return redirect('DonorController@index');
-        }
     }
 
     /**
@@ -79,9 +68,6 @@ class DonorController extends Controller
     public function edit($id)
     {
         //
-        $donor = Donor::findOrFail($id);
-
-        return view('portal.booster.donor', compact('donor'));
     }
 
     /**
@@ -104,7 +90,6 @@ class DonorController extends Controller
      */
     public function destroy($id)
     {
-       Donor::destroy($id);
-       return redirect('DonorController@index');
+        //
     }
-  }
+}

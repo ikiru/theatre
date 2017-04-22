@@ -62,7 +62,10 @@ Route::post('/profile','UserController@update_avatar');
 // Route::get('/donor',function(){return view('/portal/booster/donor');});
 
 Route::resource('/donor','DonorController');
-
+Route::resource('/donation','DonationController');
+Route::resource('/points','PointsController');
+Route::resource('/show','ShowController');
+Route::resource('/venu','VenueController');
 /*
 |--------------------------------------------------------------------------
 |Ajax
@@ -72,3 +75,7 @@ Route::resource('/donor','DonorController');
 
 // Route::get('/donor','AjaxController@fetch_donor');
 // Route::post('/donor','AjaxController@fetch_donor');
+// Route::get('/', function(){
+//   $states =State::all();
+//   return View::make('portal.booster.donor')->with('states', $states);
+// });

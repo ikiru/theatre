@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+  {{-- TODO : link dropdown menus  --}}
+
   {{--
   |--------------------------------------------------------------------------
   |Col 1 - Add a New Donor
@@ -32,6 +34,8 @@
 
 
   {{-- Create form --}}
+
+
 <div class="row">
 
   {!! Form::open(['method'=>'POST', 'action'=>'DonorController@store']) !!}
@@ -51,6 +55,7 @@
           {!! Form::text('firstname',null,['class'=>'form-control', 'placeholder'=>'First name of donor contact' ]); !!}
           {!! Form::label('lastname','Last name:') !!}
           {!! Form::text('lastname',null,['class'=>'form-control', 'placeholder'=>'Last name of donor contact' ]); !!}
+            <hr>
 
           <span class="input-group-addon">
           {!! Form::radio('donor_id',1,['class'=>'form-control']); !!}
@@ -59,15 +64,19 @@
           <span class="input-group-addon">
           {!! Form::radio('donor_id',0,['class'=>'form-control']); !!}
           {!! Form::label('active_id','Inactive') !!}
-        </span
-        </br>
+        </span>
+          <hr>
+
           {!! Form::label('business_name','Business Name:') !!}
           {!! Form::text('business_name',null,['class'=>'form-control', 'placeholder'=>'Optional' ]); !!}
           {!! Form::label('address','Address:') !!}
           {!! Form::text('address',null,['class'=>'form-control', 'placeholder'=>'Address' ]); !!}
           {!! Form::label('city','City:') !!}
           {!! Form::text('city',null,['class'=>'form-control', 'placeholder'  =>'City' ]); !!}
-          {{-- {!! Form::select('state',null,['class'=>'form-control', 'placeholder'=>'State' ]); !!} --}}
+          
+          {!! Form::label('state_id','State:') !!}
+          {{ Form::select('state_id',$states,null,array('class'=>'form-control','placeholder'=>'')) }}
+
           {!! Form::label('zip','Zip:') !!}
           {!! Form::text('zip',null,['class'=>'form-control', 'placeholder'=>'' ]); !!}
           {!! Form::label('phone','Phone:') !!}
