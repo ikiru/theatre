@@ -3,19 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Donor;
-use App\User;
+use App\Venue;
+use App\State;
 
-class DonationController extends Controller
+class VenueController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
+        $venues = Venue::all();
+        $states = State::pluck('name','id');
+
+          return view('portal.show.venue', compact('venues','states'));
+
+
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Tpoint;
 use App\Tcatagory;
 use App\Tlength;
 use App\Tposition;
+use App\Users;
 
 class PointsController extends Controller
 {

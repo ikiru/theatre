@@ -34,4 +34,16 @@ class State extends Model
     return $this->hasMany('donor');
 
   }
+  
+  public function venues()
+  {
+    return $this->hasMany('venue');
+
+  }
+
+  public function states()
+  {
+    return $this->hasMany('state');
+
+  }
 }

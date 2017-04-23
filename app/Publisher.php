@@ -10,4 +10,12 @@ class Publisher extends Model
   protected $fillable = [
     'name'
   ];
+
+  /**
+   * Get the Publishers for the model.
+   */
+  public function shows()
+  {
+      return $this->hasMany(shows::class);
+  }
 }

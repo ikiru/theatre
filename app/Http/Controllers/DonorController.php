@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Donor;
-Use App\State;
+use App\State;
+use App\User;
 
 class DonorController extends Controller
 {

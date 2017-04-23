@@ -33,6 +33,7 @@
                     {!! Form::token(); !!}
                     {!! Form::hidden('user_id','user_id') !!}
                     {!! Form::hidden('approved_id','1') !!}
+                    {!! Form::hidden('school_id', 'school_id') !!}
 
                     {!! Form::label('name','Event Name') !!}
                     {!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'' ]); !!}

@@ -65,7 +65,8 @@ Route::resource('/donor','DonorController');
 Route::resource('/donation','DonationController');
 Route::resource('/points','PointsController');
 Route::resource('/show','ShowController');
-Route::resource('/venu','VenueController');
+Route::resource('/venue','VenueController');
+
 /*
 |--------------------------------------------------------------------------
 |Ajax
