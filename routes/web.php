@@ -75,3 +75,5 @@ Route::resource('/cast','CastlistController');
 |--------------------------------------------------------------------------
 |
 */
+
+Route::get('/state','AjaxController@getstate');

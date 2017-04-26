@@ -17,12 +17,12 @@ class DonorController extends Controller
     public function index()
     {
         //true for all schools
-        // $states = State::pluck('name','id');
+        $states = State::pluck('name','id');
 
         //Only for selected schools
-        $donors = Donor::all();
-        // return view('portal.booster.donor', compact('donors','states'));
-        return view('portal.booster.donor', compact('donors'));
+        $data = Donor::all();
+
+        return view('portal.booster.donor', compact('data','states'));
     }
 
     /**
@@ -48,9 +48,26 @@ class DonorController extends Controller
     {
         //
         Donor::create($request->all());
-        $donors = Donor::all();
+        $id = Donor::getPdo()->lastInsertId();
 
-          return view('portal.booster.donor', compact('donors'));
+        return response()->json([
+          'id' => $id,
+          'firstname' => $firstname,
+          'lastname' => $lastname,
+          'business' => $business,
+          'phone' => $phone,
+          'address' => $address,
+          'city' => $city,
+          'state_id' => $state_id,
+          'zip' => $zip,
+          'donor_id' => $donor_id,
+          'is_active' => $is_active,
+          'created_at' => $created_at,
+          'updated_at' => $updated_at,
+          'notes' => $notes,
+          'email' => $email,
+          'user_id' => $user_id
+        ]);
     }
 
     /**
