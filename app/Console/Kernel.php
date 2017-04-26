@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+          $schedule->command('hook:check')->sundays()->at('03:00');
     }
 
     /**
@@ -37,4 +38,5 @@ class Kernel extends ConsoleKernel
     {
         require base_path('routes/console.php');
     }
+
 }

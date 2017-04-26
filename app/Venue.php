@@ -20,7 +20,8 @@ class Venue extends Model
     'in_district',
     'created_at',
     'updated_at',
-    'user_id'
+    'user_id',
+    'school_id'
   ];
 
 

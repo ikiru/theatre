@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Larapack\VoyagerHooks\VoyagerHooksServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
         TCG\Voyager\VoyagerServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,

@@ -15,7 +15,15 @@ class DonationController extends Controller
      */
     public function index()
     {
-        //
+
+        //true for all schools
+
+
+        //Only for selected schools
+
+
+        return view('portal.booster.donation');
+
     }
 
     /**

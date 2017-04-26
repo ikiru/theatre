@@ -16,12 +16,13 @@ class DonorController extends Controller
      */
     public function index()
     {
-        //
+        //true for all schools
+        // $states = State::pluck('name','id');
+
+        //Only for selected schools
         $donors = Donor::all();
-        $states = State::pluck('name','id');
-
-          return view('portal.booster.donor', compact('donors','states'));
-
+        // return view('portal.booster.donor', compact('donors','states'));
+        return view('portal.booster.donor', compact('donors'));
     }
 
     /**
@@ -32,7 +33,7 @@ class DonorController extends Controller
     public function create()
     {
         //
-        echo "i'm a big fat muffin";
+        echo "I'm a big fat muffin";
 
         // return redirect('DonorController@index');
     }

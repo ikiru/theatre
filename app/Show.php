@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Showtype;
 use App\Schoolyear;
 use App\Publisher;
+use App\Rolelist;
+use App\Castlist;
+use App\Techrolelist;
+use App\School;
+use App\Auth;
 
 class Show extends Model
 {
@@ -25,7 +30,10 @@ class Show extends Model
     'user_id',
     'school_id',
     'created_at',
-    'updated_at'
+    'updated_at',
+    'castlist_id',
+    'rolelist_id',
+    'techrolelist_id'
   ];
 
   /**
@@ -50,5 +58,53 @@ class Show extends Model
   public function Publishers()
   {
       return $this->belongsTo(Publishers::class);
+  }
+
+  /**
+   * Get the Castlist for the model.
+   */
+  public function castlist()
+  {
+      return $this->hasMany(Castlist::class);
+  }
+
+  /**
+   * Get the Rolelist for the model.
+   */
+  public function rolelist()
+  {
+      return $this->hasMany(Rolelist::class);
+  }
+
+  /**
+   * Get the Techrolelist for the model.
+   */
+  public function techrolelist()
+  {
+      return $this->hasMany(Techrolelist::class);
+  }
+
+  /**
+   * Get the User that owns the model.
+   */
+  public function user()
+  {
+      return $this->belongsTo(User::class);
+  }
+
+  /**
+   * Get the School that owns the model.
+   */
+  public function school()
+  {
+      return $this->belongsTo(School::class);
+  }
+
+  /**
+   * Get the Rolelist for the model.
+   */
+  public function rolelists()
+  {
+      return $this->hasMany(Rolelist::class);
   }
 }

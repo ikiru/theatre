@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tpoint;
-use App\Tcatagory;
-use App\Tlength;
-use App\Tposition;
-use App\Auth;
-use App\User;
 
-class PointsController extends Controller
+use App\Show;
+use App\Castlist;
+
+class CastlistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,14 +18,11 @@ class PointsController extends Controller
     {
         //true for all schools
 
-        //Only for selected schools
-        // $points = Tpoint::all();
-        // $catagories = Tcatagory::all();
-        // $length = Tlength::all();
-        // $postion = Tpositon::all();
 
-          // return view('portal.thespian.points', compact('points','catagories','length', 'postion'));
-          return view('portal.thespian.points');
+        //Only for selected schools
+
+
+        return view('portal.show.cast');
     }
 
     /**

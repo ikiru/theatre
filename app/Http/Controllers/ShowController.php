@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 use App\Venue;
-use App\User;
+use App\Show;
 use App\Showtype;
 use App\Publisher;
+use App\Schoolyear;
+
 
 class ShowController extends Controller
 {
@@ -17,16 +21,17 @@ class ShowController extends Controller
      */
     public function index()
     {
-        //
-          // $showtype = Showtype::all();
-          $venues = Venue::pluck('name','id');
+        //true for all schools
+          $publishers = Publisher::orderBy('name')->pluck('name', 'id');
+          $showtypes = Showtype::orderBy('name')->pluck('name','id');
+          $schoolyears = Schoolyear::pluck('name','id');
+
+        //Only for selected schools
+          $venues = Venue::orderBy('name')->pluck('name','id');
           $shows = Show::all();
-          $publishers = Publisher::pluck('name','id');
-          $showtypes = Showtype::pluck('name','id');
-
-          return view('portal.show.show', compact('venues','publishers','shows', 'showtypes'));
-
           
+          return view('portal.show.show', compact('publishers','showtypes','schoolyears','venues','shows'));
+
     }
 
     /**
@@ -48,6 +53,10 @@ class ShowController extends Controller
     public function store(Request $request)
     {
         //
+       Show::create($request->all());
+
+       return view('portal.show.role');
+
     }
 
     /**
@@ -92,6 +101,7 @@ class ShowController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Show::destroy($id);
+        return redirect('ShowController@index');
     }
 }

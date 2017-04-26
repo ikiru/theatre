@@ -16,10 +16,13 @@ class VenueController extends Controller
 
     public function index()
     {
-        //
-        $venues = Venue::all();
+      //true for all schools
         $states = State::pluck('name','id');
 
+      //Only for selected schools
+        $venues = Venue::all();
+
+        dd($venues);
           return view('portal.show.venue', compact('venues','states'));
 
 

@@ -1,6 +1,6 @@
 <?php
 
-
+use App\State;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,6 +66,8 @@ Route::resource('/donation','DonationController');
 Route::resource('/points','PointsController');
 Route::resource('/show','ShowController');
 Route::resource('/venue','VenueController');
+Route::resource('/role','RolelistController');
+Route::resource('/cast','CastlistController');
 
 /*
 |--------------------------------------------------------------------------
@@ -73,10 +75,3 @@ Route::resource('/venue','VenueController');
 |--------------------------------------------------------------------------
 |
 */
-
-// Route::get('/donor','AjaxController@fetch_donor');
-// Route::post('/donor','AjaxController@fetch_donor');
-// Route::get('/', function(){
-//   $states =State::all();
-//   return View::make('portal.booster.donor')->with('states', $states);
-// });

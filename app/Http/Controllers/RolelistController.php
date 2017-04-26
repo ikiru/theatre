@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tpoint;
-use App\Tcatagory;
-use App\Tlength;
-use App\Tposition;
-use App\Auth;
-use App\User;
+use App\Show;
+use App\Castlist;
+use App\Rolelist;
 
-class PointsController extends Controller
+class RolelistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,16 +16,13 @@ class PointsController extends Controller
      */
     public function index()
     {
-        //true for all schools
+      //true for all schools
 
-        //Only for selected schools
-        // $points = Tpoint::all();
-        // $catagories = Tcatagory::all();
-        // $length = Tlength::all();
-        // $postion = Tpositon::all();
-
-          // return view('portal.thespian.points', compact('points','catagories','length', 'postion'));
-          return view('portal.thespian.points');
+      //Only for selected schools
+      $shows = Show::orderBy('id','DESC')->pluck('name','id');
+      $roles = Rolelist::orderBy('name')->pluck('name','id');
+      dd($roles);
+      return view('portal.show.role',compact('shows','roles'));
     }
 
     /**
@@ -49,7 +43,10 @@ class PointsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+      Rolelist::create($request->all());
+
+      return view('portal.show.role');
     }
 
     /**

@@ -10,12 +10,12 @@ Use App\Donor;
 class AjaxController extends Controller
 {
     public function index(){
-
-    //
-    }
+      $msg = "This is a simple message.";
+      return response()->json(array('msg'=> $msg), 200);
+   }
 
     public function fetchDonor(Request $request){
-
+      
       if ($request->   ('post')){
         return response()->json(['response' => '']);
       }

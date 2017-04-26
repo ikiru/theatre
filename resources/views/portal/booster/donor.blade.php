@@ -49,8 +49,8 @@
 
           {{-- <div class="form-inline"> --}}
           {!! Form::token(); !!}
-          {!! Form::hidden('user_id','user_id') !!}
-          {!! Form::hidden('school_id', 'school_id') !!}
+          {{-- {!! Form::hidden('user_id','user_id') !!}
+          {!! Form::hidden('school_id', 'school_id') !!} --}}
 
           <h3>New Donor</h3>
 
@@ -77,7 +77,7 @@
                 {!! Form::label('is_active','Active') !!}
               </span>
                 <span class="input-group-addon">
-                {!! Form::radio('is_active',0,['class'=>'form-control']); !!}
+                {!! Form::radio('is_active',2,['class'=>'form-control']); !!}
                 {!! Form::label('is_active','Inactive') !!}
               </span>
               </div>
@@ -112,7 +112,7 @@
           <div class="form-group{{ $errors->has('state_id') ? ' has-error' : '' }}">
               {!! Form::label('state_id', 'State', ['class' => 'col-sm-3 control-label']) !!}
               <div class="col-sm-9">
-                  {!! Form::select('state_id', $states, null, ['class' => 'form-control', 'required' => 'required']) !!}
+                  {!! Form::select('state_id', '{{ $states->name }}', '{{ $states->id }}', ['class' => 'form-control', 'required' => 'required']) !!}
                   <small class="text-danger">{{ $errors->first('state_id') }}</small>
               </div>
           </div>
@@ -167,7 +167,7 @@
               <small class="text-danger">{{ $errors->first('inputname') }}</small>
           </div>
 
-          {!! Form::submit('Submit',['class' => "btn btn-primary pull-right"]) !!}
+          {!! Form::button('Add',['class' => "btn btn-primary pull-right"]) !!}
         </span>
 
         </div>
@@ -229,32 +229,31 @@
 
 </div>
 @endsection
-{{-- <script>
-$(document).ready(function(){
-  $('.hover').popover({
-    title:fetchData,
-    html:true,
-    placement:'right'
-  })
+<script>
+$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
 
-  function fetchData(){
-    var fetch_data = '';
-    var element = $(this);
-    var id = element.attr("id");
-    $.ajax({
-      type:type,
-      url:"fetch.php",
-      method:"POST",
-      async:false,
-      data:{id:id}
-      success:function(data){
-        fetch_data;
-      }
-    });
-    return fetch_data;
-  }
-});
+  // we're not passing any data with the get route, though you can if you want
+  $.get('/state');
+  var states = $data
 
-</script> --}}
+
+function onPostClick(event)
+{
+  // we're passing data with the post route, as this is more normal
+  $.post('/ajax/post', {payload:'hello'}, onSuccess);
+}
+
+function onSuccess(data, status, xhr)
+{
+  // with our success handler, we're just logging the data...
+  console.log(data, status, xhr);
+  // but you can do something with it if you like - the JSON is deserialised into an object
+  console.log(String(data.value).toUpperCase())
+}
+// listeners
+$('button#get').on('click', onGetClick);
+$('button#post').on('click', onPostClick);
+
+</script>
 
 @include('partials.footer')
