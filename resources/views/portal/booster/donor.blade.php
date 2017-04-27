@@ -1,3 +1,4 @@
+@include('partials.needs')
 @extends('layouts.app')
 @section('content')
 
@@ -12,21 +13,20 @@
   |
   --}}
 
-
 <div class="row">
-  {{-- {!! Form::open(['method'=>'POST', 'action'=>'DonorController@store']) !!} --}}
-  <div class="container">
+<div class="container">
   <div class="col-sm-6 ">
     <div class="panel panel-default">
       <div class="panel-heading">Add Donor</div>
        <div class="form-horizontal">
          <div class="panel-body">
 
-          {{-- {!! Form::token(); !!} --}}
-          {{-- {!! Form::hidden('user_id','user_id') !!}
-          {!! Form::hidden('school_id', 'school_id') !!} --}}
-
           {!! Form::open(['class' => 'form-horizontal', 'id' =>"add-form"]) !!}
+          {!! Form::token(); !!}
+
+          {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
+          {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
+
 
           <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
               {!! Form::label('firstname', 'First Name', ['class' => 'col-sm-3 control-label']) !!}
@@ -82,10 +82,11 @@
                   <small class="text-danger">{{ $errors->first('city') }}</small>
               </div>
           </div>
+
           <div class="form-group{{ $errors->has('state_id') ? ' has-error' : '' }}">
-              {!! Form::label('state_id', 'Input', ['class' => 'col-sm-3 control-label', 'id'=>'search']) !!}
+              {!! Form::label('state_id', 'State', ['class' => 'col-sm-3 control-label']) !!}
               <div class="col-sm-9">
-                  {!! Form::text('state_id', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                  {!! Form::text('state_id', null, ['class' => 'form-control', 'required' => 'required', 'id'=>'search']) !!}
                   <small class="text-danger">{{ $errors->first('state_id') }}</small>
               </div>
           </div>
@@ -378,4 +379,7 @@
   </div>
 </div>
 @endsection
+
+<script src="{{ asset('js/state.js') }}"></script>
+
 @include('partials.footer')

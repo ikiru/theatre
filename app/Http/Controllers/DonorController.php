@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Donor;
 use App\State;
 use App\User;
+use App\Auth;
 
 class DonorController extends Controller
 {

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
@@ -90,9 +91,5 @@
       </ul>
     </div>
     @yield('content')
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/ajax.js') }}"></script>
-    <script src="{{ asset('js/state.js') }}"></script>
-</body>
+  </body>
 </html>

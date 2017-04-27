@@ -10,13 +10,13 @@ Use App\State;
 class AjaxController extends Controller
 {
   public function getstate(){
-
+    
     $id = State::all();
 
   return response()->json([
     'id' => $id,
     'name' => $name
-    
+
     ]);
   }
 }
