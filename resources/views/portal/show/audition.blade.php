@@ -1,3 +1,4 @@
+@include('partials.needs')
 @extends('layouts.app')
 @section('content')
   {{-- TODO --}}
@@ -12,33 +13,37 @@
 
     {!! Form::open(['method'=>'POST', 'action'=>'///Controller@store']) !!}
 
-                  <div class="container">
+    <div class="row">
+      <div class="container">
+        <div class="col-sm-6 ">
+          <div class="panel panel-default">
+            <div class="panel-heading">Add Donor</div>
+             <div class="form-horizontal">
+               <div class="panel-body">
 
-                  <div class="col-sm-6 ">
-                    <div class="well">
-                      <h3>Col 1</h3>
-                        <div class="form-horizontal">
+                          {{-- <div class="form-inline"> --}}
+                          <form class="" action="index.html" method="post">
 
-                            {{-- <div class="form-inline"> --}}
-                            {!! Form::token(); !!}
-                            {!! Form::hidden('user_id','user_id') !!}
-                            {!! Form::hidden('school_id', 'school_id') !!}
-
-
-
-
-
-
-                          </span>
+                          {!! Form::token(); !!}
+                          {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
+                          {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
 
 
-                            {!! Form::submit('Submit',['class' => "btn btn-primary pull-right"]) !!}
-                          </span>
+
+
+
+
+
+
+                          {!! Form::submit('Submit',['class' => "btn btn-primary pull-right"]) !!}
+                          {!! Form::close() !!}
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
-                {!! Form::close() !!}
+              </div>
+            </div>
 
 
     {{--

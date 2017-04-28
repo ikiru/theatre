@@ -1,3 +1,4 @@
+@include('partials.needs')
 @extends('layouts.app')
 @section('content')
   {{-- TODO --}}
@@ -23,8 +24,8 @@
 
               {{-- <div class="form-inline"> --}}
               {!! Form::token(); !!}
-              {!! Form::hidden('user_id','user_id') !!}
-              {!! Form::hidden('school_id', 'school_id') !!}
+              {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
+              {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
 
               <h3>New Show</h3>
 
@@ -94,7 +95,7 @@
         </div>
       </div>
     </div>
-    
+
 
 
 

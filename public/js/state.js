@@ -4,26 +4,14 @@ $(document).ready(function() {
     /* Act on the event */
     var search = $('search').val();
 
-    $.$.ajax({
+    $.ajax({
       url: '/state',
       type: 'get',
-      data: {search:search''}
+      data: {search:search},
       success:(data){
-        if(!data.error){
+        if(!response.error){
 
           $('#search').html(data);
         }
       }
     })
-    .done(function() {
-      console.log("success");
-    })
-    .fail(function() {
-      console.log("error");
-    })
-    .always(function() {
-      console.log("complete");
-    });
-
-  });
-});

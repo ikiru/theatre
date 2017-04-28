@@ -1,10 +1,9 @@
 @include('partials.needs')
 @extends('layouts.app')
 @section('content')
-
-  {{-- FIXME : notes add --}}
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   {{-- TODO : Add Edit  --}}
-  {{-- TODO : FK  --}}
+
 
   {{--
   |--------------------------------------------------------------------------
@@ -20,16 +19,16 @@
       <div class="panel-heading">Add Donor</div>
        <div class="form-horizontal">
          <div class="panel-body">
+           <form class="form-horizontal" action="add-donor" method="post" id="add-donor-form">
 
-          {!! Form::open(['class' => 'form-horizontal', 'id' =>"add-form"]) !!}
+          {{-- {!! Form::open(['action' => 'add-donor', 'method'=>"post", 'class' =>'form-horizontal', 'id' =>"add-donor-form"]) !!} --}}
           {!! Form::token(); !!}
 
           {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
           {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
 
-
           <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-              {!! Form::label('firstname', 'First Name', ['class' => 'col-sm-3 control-label']) !!}
+              {!! Form::label('firstname', 'First Name', ['class' =>'col-sm-3 control-label']) !!}
               <div class="col-sm-9">
                   {!! Form::text('firstname', null, ['class' => 'form-control', 'required' => 'required']) !!}
                   <small class="text-danger">{{ $errors->first('firstname') }}</small>
@@ -44,20 +43,6 @@
               </div>
           </div>
 
-          <div class="radio{{ $errors->has('is_active') ? ' has-error' : '' }}">
-              <div class=" col-sm-12">
-                <span class="input-group-addon">
-                {!! Form::radio('is_active',1,['class'=>'form-control']); !!}
-                {!! Form::label('is_active','Active') !!}
-              </span>
-                <span class="input-group-addon">
-                {!! Form::radio('is_active',2,['class'=>'form-control']); !!}
-                {!! Form::label('is_active','Inactive') !!}
-              </span>
-              </div>
-          </div>
-
-            <hr>
 
           <div class="form-group{{ $errors->has('business_name') ? ' has-error' : '' }}">
               {!! Form::label('business_name', 'Business Name', ['class' => 'col-sm-3 control-label']) !!}
@@ -86,22 +71,14 @@
           <div class="form-group{{ $errors->has('state_id') ? ' has-error' : '' }}">
               {!! Form::label('state_id', 'State', ['class' => 'col-sm-3 control-label']) !!}
               <div class="col-sm-9">
-                  {!! Form::text('state_id', null, ['class' => 'form-control', 'required' => 'required', 'id'=>'search']) !!}
+                  {!! Form::select('state_id', $states, 'states', ['class' => 'form-control', 'data-live-search'=>"true", 'required' => 'required']) !!}
                   <small class="text-danger">{{ $errors->first('state_id') }}</small>
               </div>
           </div>
 
-          {{-- <div class="form-group{{ $errors->has('state_id') ? ' has-error' : '' }}">
-              {!! Form::label('state_id', 'State', ['class' => 'col-sm-3 control-label']) !!}
-              <div class="col-sm-9">
-                  {!! Form::select('state_id', $states, 'states', ['class' => 'form-control', 'required' => 'required']) !!}
-                  <small class="text-danger">{{ $errors->first('state_id') }}</small>
-              </div>
-          </div> --}}
-
           <div class="form-group{{ $errors->has('zip') ? ' has-error' : '' }}">
               {!! Form::label('zip', 'Zip', ['class' => 'col-sm-3 control-label']) !!}
-              <div class="col-sm-9">
+              <div class="col-sm-4">
                   {!! Form::text('zip', null, ['class' => 'form-control', 'required' => 'required']) !!}
                   <small class="text-danger">{{ $errors->first('zip') }}</small>
               </div>
@@ -123,43 +100,44 @@
               </div>
           </div>
 
-          <div class="radio{{ $errors->has('is_active') ? ' has-error' : '' }}">
-              <div class=" col-sm-12">
+          <hr>
+            <div class="form-group">
+                <div class="checkbox{{ $errors->has('is_active') ? ' has-error' : '' }}">
+                          {!! Form::label('is_active','Is this donor active?',['class' => 'col-sm-3 control-label']) !!}
+                          <div class="col-sm-9">
+                          {!! Form::checkbox('is_active', null, null, ['id' => 'is_active','data-toggle'=>"toggle",'data-on'=>"Active", 'data-off'=>"Not Active",  'data-onstyle'=>"primary", 'data-offstyle'=>"danger", 'data-size'=>"small"]) !!}
+                        </div>
+                    <small class="text-danger">{{ $errors->first('is_active') }}</small>
+                </div>
+            </div>
 
-                <span class="input-group-addon">
-                  {!! Form::radio('donor_id',1,['class'=>'form-control']); !!}
-                  {!! Form::label('donor_id','Business ') !!}
-                </span>
 
-                <span class="input-group-addon">
-                  {!! Form::radio('donor_id',2,['class'=>'form-control']); !!}
-                  {!! Form::label('donor_id','Individual/Family ') !!}
-                </span>
 
-                <span class="input-group-addon">
-                  {!! Form::radio('donor_id',3,['class'=>'form-control']); !!}
-                  {!! Form::label('donor_id','Private/Anonymous') !!}
-                </span>
-              </div>
+          {!! Form::label('email', 'Donor type', ['class' =>'col-xs-3 control-label']) !!}
+          <div class="col-xs-offset-3">
+            <div id="tab" class="btn-group" data-toggle="buttons-radio">
+              <button name="donor_id" value="1" class="btn btn-large btn-info" data-toggle="true">Business</buton>
+              <button name="donor_id" value="2" class="btn btn-large btn-info active" data-toggle="true">Indivdiual/Family</button>
+              <button name="donor_id" value="3" class="btn btn-large btn-info" data-toggle="true">Private/Anonymous</button>
           </div>
+        </div>
+        <hr>
 
+        <div class="col-sm-12">
           <div class="form-group{{ $errors->has('notes') ? ' has-error' : '' }}">
               {!! Form::label('notes', 'Notes') !!}
               {!! Form::textarea('notes', null, ['class' => 'form-control', 'placeholder' =>'Enter any notes that you have about the donor'])!!}
               <small class="text-danger">{{ $errors->first('notes') }}</small>
           </div>
-
-              {!! Form::button('Add',['class' => "btn btn-primary pull-right", 'id'=>"add-button"]) !!}
-              {!! Form::close() !!}
-        </span>
         </div>
+
+              {!! Form::submit('Add Donor',['class' => "btn btn-primary pull-right", 'id'=>"add-button"]) !!}
+
+              </form>
+            </div>
         </div>
       </div>
     </div>
-
-
-
-
 
 
     {{--
@@ -380,6 +358,6 @@
 </div>
 @endsection
 
-<script src="{{ asset('js/state.js') }}"></script>
+<script src="{{ asset('js/donor.js') }}"></script>
 
 @include('partials.footer')

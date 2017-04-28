@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-Use App\Http\Controllers\Controlller;
-Use App\State;
+use App\Http\Controllers\Controlller;
+use App\State;
+use App\Donor;
 
 
 class AjaxController extends Controller
 {
   public function getstate(){
-    
+
     $id = State::all();
 
   return response()->json([
@@ -18,5 +19,20 @@ class AjaxController extends Controller
     'name' => $name
 
     ]);
+  }
+  public function addonor(){
+    echo "I work";
+
+  }
+    //   Donor::create($_POST->all());
+    //
+    //   return('portal.booster.donor')
+
+  }
+  public function getdonor(){
+
+
+
+
   }
 }

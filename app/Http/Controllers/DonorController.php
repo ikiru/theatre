@@ -127,4 +127,6 @@ class DonorController extends Controller
        Donor::destroy($id);
        return redirect('DonorController@index');
     }
+
+
   }

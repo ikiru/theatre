@@ -1,3 +1,4 @@
+@include('partials.needs')
 @extends('layouts.app')
 @section('content')
 
@@ -31,9 +32,10 @@
 
                     {{-- <div class="form-inline"> --}}
                     {!! Form::token(); !!}
-                    {!! Form::hidden('user_id','user_id') !!}
+                    {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
+                    {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
                     {!! Form::hidden('approved_id','1') !!}
-                    {!! Form::hidden('school_id', 'school_id') !!}
+
 
                     {!! Form::label('name','Event Name') !!}
                     {!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'' ]); !!}

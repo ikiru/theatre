@@ -55,11 +55,9 @@ Auth::routes();
 */
 
 Route::get('/portal',function(){return view('/portal/home');});
-
 Route::get('/profile','UserController@profile');
 Route::post('/profile','UserController@update_avatar');
 
-// Route::get('/donor',function(){return view('/portal/booster/donor');});
 
 Route::resource('/donor','DonorController');
 Route::resource('/donation','DonationController');
@@ -68,6 +66,8 @@ Route::resource('/show','ShowController');
 Route::resource('/venue','VenueController');
 Route::resource('/role','RolelistController');
 Route::resource('/cast','CastlistController');
+Route::resource('/audition','AuditionController');
+Route::resource('/dnote','DirectorNoteController');
 
 /*
 |--------------------------------------------------------------------------
@@ -76,4 +76,4 @@ Route::resource('/cast','CastlistController');
 |
 */
 
-Route::get('/state','AjaxController@getstate');
+Route::post('/add-donor','AjaxController@addonor');

@@ -1,3 +1,4 @@
+@include('partials.needs')
 @extends('layouts.app')
 @section('content')
 
@@ -22,7 +23,8 @@
 
                   {{-- <div class="form-inline"> --}}
                   {!! Form::token(); !!}
-                  {!! Form::hidden('user_id','user_id') !!}
+                  {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
+                  {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
 
                   <div class="radio{{ $errors->has('in_district') ? ' has-error' : '' }}">
                       <div class=" col-sm-12">
@@ -67,7 +69,7 @@
                 <div class="form-group{{ $errors->has('state_id') ? ' has-error' : '' }}">
                     {!! Form::label('state_id', 'State', ['class' => 'col-sm-3 control-label']) !!}
                     <div class="col-sm-9">
-                        {!! Form::select('state_id', $states, null, ['class' => 'form-control', 'required' => 'required', 'placeholder'=>'']) !!}
+                        {!! Form::select('state_id', $states, 'states', ['class' => 'form-control', 'data-live-search'=>"true", 'required' => 'required']) !!}
                         <small class="text-danger">{{ $errors->first('state_id') }}</small>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 
     @include('partials.needs')
     @include('partials.nav')
-
+  
         @yield('content')
         <!--
         ==================================================
@@ -158,4 +158,3 @@
     <script src="{{ asset('js/ajax.js') }}"></script>
         </body>
     </html>
-    

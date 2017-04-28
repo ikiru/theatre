@@ -1,3 +1,4 @@
+@include('partials.needs')
 @extends('layouts.app')
 @section('content')
   {{-- FIXME dropdowns must relate to School--}}
@@ -21,8 +22,8 @@
 
                             {{-- <div class="form-inline"> --}}
                             {!! Form::token(); !!}
-                            {!! Form::hidden('user_id','user_id') !!}
-                            {!! Form::hidden('school_id', 'school_id') !!}
+                            {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
+                            {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 {!! Form::label('name', 'Input', ['class' => 'col-sm-3 control-label']) !!}

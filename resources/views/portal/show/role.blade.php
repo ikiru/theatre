@@ -1,3 +1,4 @@
+@include('partials.needs')
 @extends('layouts.app')
 @section('content')
   {{-- TODO --}}
@@ -23,8 +24,8 @@
 
                             {{-- <div class="form-inline"> --}}
                             {!! Form::token(); !!}
-                            {{-- {!! Form::hidden('user_id','user_id') !!}
-                            {!! Form::hidden('school_id', 'school_id') !!} --}}
+                            {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
+                            {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
 
                             <div class="form-group{{ $errors->has('shows') ? ' has-error' : '' }}">
                                 {!! Form::label('shows', 'Show', ['class' => 'col-sm-3 control-label']) !!}
@@ -47,7 +48,7 @@
                       </div>
                     </div>
                   </div>
-              
+
                 {!! Form::close() !!}
 
     {{--
