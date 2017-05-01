@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Dancetype;
+use App\VocalSkill;
+use App\Show;
 
 class AuditionController extends Controller
 {
@@ -14,6 +17,12 @@ class AuditionController extends Controller
     public function index()
     {
         //
+        $dance = Dancetype::pluck('name','id');
+        $vocal = VocalSkill::pluck('name','id');
+        $shows = Show::pluck('name','id');
+
+        return view('portal.show.auditionf',compact('dance','vocal','show'));
+
     }
 
     /**

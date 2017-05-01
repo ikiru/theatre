@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Dnote;
-use App\Audition;
-use App\Show;
-use Auth;
+use App\Audform;
+use App\User;
+use App\School;
+use App\ConflictReason;
+use App\Conflict;
 
-class DirectorNoteController extends Controller
+class ConflictController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +19,9 @@ class DirectorNoteController extends Controller
     public function index()
     {
         //
-        $auth = Auth::pluck('id','user_id');
-        $shows = Show::pluck('name','id');
-        return view('portal.show.dnote', compact('shows','auth'));
+        $reason = ConflictReason::pluck('name','id');
+
+        return view('portal.show.conflicts', compact('reason'));
     }
 
     /**
@@ -43,11 +44,10 @@ class DirectorNoteController extends Controller
     public function store(Request $request)
     {
         //
-         return $request->all();
 
-        Dnote::create($request->all($request->all));
+        Conflict::create($request);
 
-        return view('portal.show.dnote');
+        return view('portal.show.conflicts');
     }
 
     /**

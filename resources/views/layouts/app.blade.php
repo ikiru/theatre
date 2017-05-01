@@ -1,4 +1,4 @@
-
+@include('partials.needs')
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
@@ -85,7 +85,7 @@
           {{-- Portal sub menu --}}
           <ul nav class="nav navbar navbar-inverse">
             <div class="container">
-            {{ menu('portal','bootstrap') }}
+
           </div>
         </nav>
       </ul>

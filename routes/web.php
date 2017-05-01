@@ -66,8 +66,10 @@ Route::resource('/show','ShowController');
 Route::resource('/venue','VenueController');
 Route::resource('/role','RolelistController');
 Route::resource('/cast','CastlistController');
-Route::resource('/audition','AuditionController');
+Route::resource('/auditionf','AuditionController');
 Route::resource('/dnote','DirectorNoteController');
+Route::resource('/conflicts','ConflictController');
+
 
 /*
 |--------------------------------------------------------------------------

@@ -14,16 +14,18 @@ class Dnote extends Model
     'characterization',
     'taking_direction',
     'vocal',
-    'movements',
+    'movement',
     'characterization_note',
-    'taking_direction_notes',
-    'vocal_notes',
-    'movements_notes',
-    'Notes',
+    'taking_direction_note',
+    'vocal_note',
+    'movement_note',
+    'reading_note',
+    'note',
     'school_id',
-    'user_id', 
-    'created_at',
-    'updated_at'
+    'user_id'
 
-  ]
+
+  ];
+
+
 }
