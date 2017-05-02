@@ -36,7 +36,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/portal') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -54,11 +54,9 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-
-
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}<span class="caret"></span>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -81,15 +79,22 @@
             </div>
         </nav>
 
+          {{-- Portal Menu --}}
 
-          {{-- Portal sub menu --}}
-          <ul nav class="nav navbar navbar-inverse">
-            <div class="container">
-
+        <div class="col-sm-12">
+          <div class="container-fluid">
+          <nav class="navbar navbar-inverse ">
+            <div class="col-sm-offset-3">
+            {{ menu('portal','bootstrap') }}
           </div>
-        </nav>
-      </ul>
+          </nav>
+        </div>
+      </div>
+
+        @yield('content')
     </div>
-    @yield('content')
-  </body>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
 </html>

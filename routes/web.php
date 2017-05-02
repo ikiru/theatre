@@ -1,6 +1,6 @@
 <?php
 
-use App\State;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Auth::routes();
+
 
 
 /*
@@ -54,11 +54,11 @@ Auth::routes();
 |
 */
 
-Route::get('/portal',function(){return view('/portal/home');});
+// Route::get('/portal',function(){return view('/portal/home');});
 Route::get('/profile','UserController@profile');
 Route::post('/profile','UserController@update_avatar');
 
-
+Route::resource('/portal','PortalController');
 Route::resource('/donor','DonorController');
 Route::resource('/donation','DonationController');
 Route::resource('/points','PointsController');
@@ -79,3 +79,45 @@ Route::resource('/conflicts','ConflictController');
 */
 
 Route::post('/add-donor','AjaxController@addonor');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
