@@ -18,6 +18,14 @@ class DirectorNoteController extends Controller
     public function index()
     {
         //
+        $authschool = Auth::user()->school_id;
+
+           if(!Show::all()){
+
+           }else{
+             $ = Show::where('school_id',$authschool)->pluck('name','id');
+           }
+
         $auth = Auth::pluck('id','user_id');
         $shows = Show::pluck('name','id');
         return view('portal.show.dnote', compact('shows','auth'));

@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
   {{-- TODO --}}
-  
+
   {{--
   |--------------------------------------------------------------------------
   |Col 1 -
@@ -26,6 +26,7 @@
                           {!! Form::token(); !!}
                           {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
                           {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
+
 
 
 

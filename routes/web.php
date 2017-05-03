@@ -35,10 +35,13 @@ Route::get('/welcome',function(){return view('welcome');});
 
 /*
 |--------------------------------------------------------------------------
-| System Routes
+| Voyager Routes
 |--------------------------------------------------------------------------
 |
 */
+
+Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
@@ -54,7 +57,7 @@ Route::group(['prefix' => 'admin'], function () {
 |
 */
 
-// Route::get('/portal',function(){return view('/portal/home');});
+
 Route::get('/profile','UserController@profile');
 Route::post('/profile','UserController@update_avatar');
 
@@ -77,47 +80,3 @@ Route::resource('/conflicts','ConflictController');
 |--------------------------------------------------------------------------
 |
 */
-
-Route::post('/add-donor','AjaxController@addonor');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});

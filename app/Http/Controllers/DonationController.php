@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+
 use App\Donor;
 use App\User;
+use App\Donation;
+use App\Donationtype;
+use Auth;
 
 class DonationController extends Controller
 {
@@ -17,12 +22,18 @@ class DonationController extends Controller
     {
 
         //true for all schools
-
+        $type = Donationtype::pluck('name','id');
 
         //Only for selected schools
+      if(!Donation::all()){
 
+        }else{
+          $donations = Donation::where('school_id', Auth::user()->pluck('id'))->pluck('name','id');
+          $donors = Donor::where('school_id', Auth::user()->pluck('school_id'))->pluck('business_name','id');
 
-        return view('portal.booster.donation');
+        }
+
+        return view('portal.booster.donation', compact('type','donations','donors'));
 
     }
 
@@ -46,7 +57,8 @@ class DonationController extends Controller
     {
         //
 
-        
+        Donation::create($request->all());
+        return redirect()->action('DonationController@index');
     }
 
     /**

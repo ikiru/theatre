@@ -11,84 +11,110 @@
   |
   --}}
 
-    {!! Form::open(['method'=>'POST', 'action'=>'///Controller@store']) !!}
+    {!! Form::open(['method'=>'POST', 'action'=>'DonationController@store']) !!}
 
-                  <div class="container">
-
-                  <div class="col-sm-6 ">
-                    <div class="well">
-                      <h3>Col 1</h3>
-                        <div class="form-horizontal">
-
-                            {{-- <div class="form-inline"> --}}
-                            {!! Form::token(); !!}
-                            {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
-                            {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
-
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                {!! Form::label('name', 'Input', ['class' => 'col-sm-3 control-label']) !!}
-                                <div class="col-sm-9">
-                                    {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                                    <small class="text-danger">{{ $errors->first('name') }}</small>
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('donationdate') ? ' has-error' : '' }}">
-                                {!! Form::label('donationdate', 'Date of Dontation') !!}
-                                {!! Form::date('donationdate', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                                <small class="text-danger">{{ $errors->first('donationdate') }}</small>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('donationtype') ? ' has-error' : '' }}">
-                                {!! Form::label('donationtype', 'Type of Dontation', ['class' => 'col-sm-3 control-label']) !!}
-                                <div class="col-sm-9">
-                                    {!! Form::select('donationtype', $options, $selected_value, ['class' => 'form-control', 'required' => 'required', 'multiple']) !!}
-                                    <small class="text-danger">{{ $errors->first('donationtype') }}</small>
-                                </div>
-                            </div>
-
-                            {{-- FIXME look into changing how this behaves.  It probably will need a If/Else  --}}
-                            <div class="form-group{{ $errors->has('donationvalue') ? ' has-error' : '' }}">
-                                {!! Form::label('donationvalue', 'Donation Value', ['class' => 'col-sm-3 control-label']) !!}
-                                <div class="col-sm-9">
-                                    {!! Form::number('donationvalue', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                                    <small class="text-danger">{{ $errors->first('donationvalue') }}</small>
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('note') ? ' has-error' : '' }}">
-                                {!! Form::label('note', 'Note') !!}
-                                {!! Form::textarea('note', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                                <small class="text-danger">{{ $errors->first('description') }}</small>
-                            </div>
-
-                            {{-- FIXME look into changing how this behaves.  It probably will need a If/Else  --}}
-                            {!! Form::label('receivedreceipt','Has donor received a donation reciept?') !!}
-                            <div class="radio{{ $errors->has('receivedreceipt') ? ' has-error' : '' }}">
-                                <div class=" col-sm-12">
-                                  <span class="input-group-addon">
-                                  {!! Form::radio('receivedreceipt',1,['class'=>'form-control']); !!}
-                                  {!! Form::label('receivedreceipt','Yes') !!}
-                                </span>
-                                  <span class="input-group-addon">
-                                  {!! Form::radio('receivedreceipt',2,['class'=>'form-control']); !!}
-                                  {!! Form::label('receivedreceipt','N') !!}
-                                </span>
-                                </div>
-                            </div>
+    <div class="container">
+      <div class="row">
+        <div class="container">
+          <div class="col-sm-6 ">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h4>Add Donations</h4></div>
+                <div class="form-horizontal">
+                  <div class="panel-body">
 
 
+                    {!! Form::open(['method'=>'POST', 'action'=>'DonationController@store']) !!}
+                    {!! Form::token(); !!}
 
-                          </span>
+                    <input type="hidden" name="user_id" value={{ Auth::user()->id }}>
+                    <input type="hidden" name="school_id" value={{ Auth::user()->school_id }}>
+
+              <div class="form-group">
+                  <div class="col-sm-12">
+                    <div class="form-group{{ $errors->has('donor_id') ? ' has-error' : '' }}">
+                        {!! Form::label('donor_id', 'Donor', ['class' => 'col-sm-3 control-label']) !!}
+                          <div class="col-sm-9">
+                            {!! Form::select('donor_id', $donors, 'donors', ['class' => 'form-control', 'required' => 'required']) !!}
+                          </div>
+                            <small class="text-danger">{{ $errors->first('donor_id') }}</small>
+                        </div>
+                    </div>
+                  </div>
+
+                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        {!! Form::label('name', 'Item', ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="col-sm-9">
+                            {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required', 'palceholder' => 'e.g. Cash, object']) !!}
+                            <small class="text-danger">{{ $errors->first('name') }}</small>
+                        </div>
+                    </div>
 
 
-                            {!! Form::submit('Submit',['class' => "btn btn-primary pull-right"]) !!}
-                          </span>
+                    <div class="input-append date form_datetime">
+                        <input size="16" type="text" value="" readonly>
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+
+                    <script type="text/javascript">
+                        $(".form_datetime").datetimepicker({
+                            format: "dd MM yyyy - hh:ii"
+                        });
+                    </script>
+
+
+                    <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
+                        {!! Form::label('date', 'Date', ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="col-sm-9">
+                            {!! Form::date('date', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                            <small class="text-danger">{{ $errors->first('date') }}</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('donationtype_id') ? ' has-error' : '' }}">
+                        {!! Form::label('donationtype_id', 'Type of Dontation', ['class' => 'col-sm-3 control-label']) !!}
+                        <div class="col-sm-9">
+                            {!! Form::select('donationtype_id', $type, 'type', ['class' => 'form-control', 'required' => 'required']) !!}
+                            <small class="text-danger">{{ $errors->first('donationtype_id') }}</small>
+                        </div>
+                    </div>
+
+                    {{-- FIXME look into changing how this behaves.  It probably will need a If/Else  --}}
+                    <div class="form-group{{ $errors->has('value') ? ' has-error' : '' }}">
+                        {!! Form::label('value', 'Cash value of dontion', ['class' => 'col-sm-6 control-label']) !!}
+                        <div class="col-sm-6">
+                            {!! Form::number('value', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                            <small class="text-danger">{{ $errors->first('value') }}</small>
+                        </div>
+                    </div>
+
+
+                      {!! Form::label('note', 'Notes') !!}
+                    <div class="form-group{{ $errors->has('note') ? ' has-error' : '' }}">
+                      <div class="col-sm-12">
+                        {!! Form::textarea('note', null, ['class' => 'form-control']) !!}
+                        <small class="text-danger">{{ $errors->first('note') }}</small>
                       </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox{{ $errors->has('has_receipt') ? ' has-error' : '' }}">
+                              {!! Form::label('has_receipt', 'Email Receipt') !!}
+                              <input type="checkbox" name="has_receipt" checked data-toggle="toggle" data-size="normal" data-on="No" data-off="Yes" data-onstyle="primary" data-offstyle="">
+                            </div>
+                            <small class="text-danger">{{ $errors->first('has_receipt') }}</small>
+                        </div>
+                          <div class="btn-group pull-right">
+                            {!! Form::reset("Reset", ['class' => 'btn btn-warning']) !!}
+                            {!! Form::submit("Add", ['class' => 'btn btn-success']) !!}
+                          </div>
+                        </div>
+                      {!! Form::close() !!}
                     </div>
                   </div>
                 </div>
-                {!! Form::close() !!}
+              </div>
 
 
     {{--
@@ -98,47 +124,48 @@
     |
     --}}
 
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="well">
-                    <h3>Col 2</h3>
-                    <table class="table">
-                      <thead>
-                            <tr>
-                              <th>Name</th>
-                              <th>Name</th>
-                              <th>Business</th>
-                              <th>Edit/Delete</th>
-                            </tr>
-                      </thead>
-                            <tbody id="show-donors">
-                              @if ($)
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Donation List</h4></div>
+            <div class="panel-body">
+              <table class="table">
+                <thead>
+                      <tr>
+                        <th>Donor</th>
+                        <th>Business</th>
+                        <th>Donation</th>
+                        <th>Value</th>
+                        <th>Edit/Delete</th>
+                      </tr>
+                </thead>
+                      <tbody id="show-donations">
+                        {{-- @if ($donations)
 
-                                    @foreach ($ as $)
+                              @foreach ($donations as $donation)
 
-                                        <tr>
-                                          <td>{{ $ -> }} </td>
-                                          <td>{{ $ ->name }}</td>
+                                  <tr>
+                                    <td>{{ $donation ->firstname }} {{ $donation ->lastname  }} </td>
+                                    <td>{{ $donation ->business_name }}</td>
+                                    <td>{{ $donation ->value }}</td>
 
-                                          <td>
+                                    <td>
 
-                                          <a href="/donor/{{ $ ->id }}/edit" class="btn btn-sm btn-primary">Edit</button>
-                                          <a href="/donor/{{ $ ->id }}" class="btn btn-sm btn-danger btn-primary" >Delete</button>
-                                          </td>
-                                      </tr>
-                                    </a>
-                                    @endforeach
-                                  @endif
-                            </tbody>
-                    </table>
-                  </div>
-                </div>
+                                    <a href="/donation/{{ $donation ->id }}/edit" class="btn btn-sm btn-primary">Edit</button>
+                                    <a href="/donation/{{ $donation ->id }}" class="btn btn-sm btn-danger btn-primary" >Delete</button>
+                                    </td>
+                                </tr>
+                              </a>
 
-              </div>
-
-
+                              @endforeach
+                            @endif --}}
+                      </tbody>
+              </table>
             </div>
-
+          </div>
+        </div>
+      </div>
+    </div>
 
 
         @endsection

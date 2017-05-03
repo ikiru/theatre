@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Donor;
 use App\Donationtype;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,8 +13,11 @@ class Donation extends Model
     'name',
     'date',
     'donationtype_id',
-    'notes',
-    'donationreciept',
+    'note',
+    'has_receipt',
+    'upload_receipt',
+    'value',
+    'donor_id',
     'user_id',
     'school_id'
   ];
@@ -24,5 +28,13 @@ class Donation extends Model
   public function donationtype()
   {
       return $this->belongsTo(Donationtype::class);
+  }
+
+  /**
+   * Get the Donor that owns the model.
+   */
+  public function Donor()
+  {
+      return $this->belongsTo(Donor::class);
   }
 }

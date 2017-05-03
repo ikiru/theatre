@@ -163,11 +163,11 @@
               </thead>
                     <tbody id="show-donors">
 
-                              @foreach ($data as $d)
+                              @foreach ($donors as $donor)
                                 <tr>
-                                  <td id="firstname-{{ $d->id }}">{{ $d->firstname }} {{ $d->lastname }}</td>
-                                  <td id="lastname-{{ $d->id }}">{{ $d->business_name }}</td>
-                                  <td id="business-{{ $d->id }}">{{ $d->phone }}</td>
+                                  <td id="firstname-{{ $d->id }}">{{ $donor->firstname }} {{ $d->lastname }}</td>
+                                  <td id="lastname-{{ $d->id }}">{{ $donor->business_name }}</td>
+                                  <td id="business-{{ $d->id }}">{{ $donor->phone }}</td>
                                   <td id="button-{{ $d->id }}">
                                   <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#edit-modal" data-id="{{ $d->id }}" data-firstname="{{ $d->id }}" data-lastname="{{ $d->id }}" data-business="{{ $d->id }}"data-phone="{{ $d->id }}">Edit</button>
                                   <button class="btn btn-sm btn-danger btn-primary" data-toggle="modal" data-target="#delete-modal" data-id={{ $d->id }}>Delete</button>

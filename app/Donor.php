@@ -3,7 +3,7 @@
 namespace App;
 
 use App\State;
-
+use App\Donation;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -34,5 +34,13 @@ class Donor extends Model
   {
     return $this->belongsTo('state');
 
+  }
+
+  /**
+   * Get the Donations for the model.
+   */
+  public function Donations()
+  {
+      return $this->hasMany(Donations::class);
   }
 }
