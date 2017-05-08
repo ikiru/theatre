@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Dancetype;
 use App\VocalSkill;
 use App\Show;
+use App\Audform;
 
 class AuditionController extends Controller
 {
@@ -16,10 +17,17 @@ class AuditionController extends Controller
      */
     public function index()
     {
-        //
-        $dance = Dancetype::pluck('name','id');
+        //true for all schools
+        $dance =Dancetype::pluck('name','id');
         $vocal = VocalSkill::pluck('name','id');
-        $shows = Show::pluck('name','id');
+
+        //Only for selected schools
+        if(!Audform::all()){
+
+        }else{
+          $show = Show::where('school_id', Auth::user()->pluck('id'))->pluck('name','id');
+
+        }
 
         return view('portal.show.auditionf',compact('dance','vocal','show'));
 

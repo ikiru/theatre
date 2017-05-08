@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Show;
 use App\Castlist;
 use App\Rolelist;
-
 class RolelistController extends Controller
 {
     /**
@@ -17,14 +14,12 @@ class RolelistController extends Controller
     public function index()
     {
       //true for all schools
-
       //Only for selected schools
       $shows = Show::orderBy('id','DESC')->pluck('name','id');
       $roles = Rolelist::orderBy('name')->pluck('name','id');
       dd($roles);
       return view('portal.show.role',compact('shows','roles'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +29,6 @@ class RolelistController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -43,12 +37,9 @@ class RolelistController extends Controller
      */
     public function store(Request $request)
     {
-
       Rolelist::create($request->all());
-
       return view('portal.show.role');
     }
-
     /**
      * Display the specified resource.
      *
@@ -59,7 +50,6 @@ class RolelistController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -70,7 +60,6 @@ class RolelistController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -82,7 +71,6 @@ class RolelistController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *

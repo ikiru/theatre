@@ -24,8 +24,8 @@
 
                             {{-- <div class="form-inline"> --}}
                             {!! Form::token(); !!}
-                            {!! Form::hidden('user_id','{{ Auth::user()->id }}') !!}
-                            {!! Form::hidden('school_id', '{{ Auth::user()->state_id }}') !!}
+                            <input type="hidden" name="user_id" value={{ Auth::user()->id }}>
+                            <input type="hidden" name="school_id" value={{ Auth::user()->school_id }}>
 
                             <div class="form-group{{ $errors->has('shows') ? ' has-error' : '' }}">
                                 {!! Form::label('shows', 'Show', ['class' => 'col-sm-3 control-label']) !!}

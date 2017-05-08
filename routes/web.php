@@ -1,6 +1,4 @@
 <?php
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,9 +9,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Frontend Routes
@@ -26,41 +21,27 @@ Route::get('/product',function(){return view('products');});
 Route::get('/support',function(){return view('support');});
 Route::get('/news',function(){return view('news');});
 Route::get('/about',function(){return view('about');});
-
 Route::get('/welcome',function(){return view('welcome');});
 // Route::get('{slug}','PageController@show');
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Voyager Routes
 |--------------------------------------------------------------------------
 |
 */
-
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 |Portal Routes -> Backend of the site
 |--------------------------------------------------------------------------
 |
 */
-
-
 Route::get('/profile','UserController@profile');
 Route::post('/profile','UserController@update_avatar');
-
 Route::resource('/portal','PortalController');
 Route::resource('/donor','DonorController');
 Route::resource('/donation','DonationController');
@@ -72,8 +53,6 @@ Route::resource('/cast','CastlistController');
 Route::resource('/auditionf','AuditionController');
 Route::resource('/dnote','DirectorNoteController');
 Route::resource('/conflicts','ConflictController');
-
-
 /*
 |--------------------------------------------------------------------------
 |Ajax

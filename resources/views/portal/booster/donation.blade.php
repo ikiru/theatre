@@ -1,7 +1,6 @@
 @include('partials.needs')
 @extends('layouts.app')
 @section('content')
-  {{-- FIXME dropdowns must relate to School--}}
   <div class="row">
 
   {{--
@@ -140,25 +139,25 @@
                       </tr>
                 </thead>
                       <tbody id="show-donations">
-                        {{-- @if ($donations)
+                        @if ($donationlists)
 
-                              @foreach ($donations as $donation)
+                              @foreach ($donationlists as $donationlist)
 
                                   <tr>
-                                    <td>{{ $donation ->firstname }} {{ $donation ->lastname  }} </td>
-                                    <td>{{ $donation ->business_name }}</td>
-                                    <td>{{ $donation ->value }}</td>
+                                    <td>{{ $donationlist ->firstname }} {{ $donationlist ->lastname }} </td>
+                                    <td>{{ $donationlist ->business_name }}</td>
+                                    <td>{{ $donationlist ->value }}</td>
 
                                     <td>
 
-                                    <a href="/donation/{{ $donation ->id }}/edit" class="btn btn-sm btn-primary">Edit</button>
-                                    <a href="/donation/{{ $donation ->id }}" class="btn btn-sm btn-danger btn-primary" >Delete</button>
+                                    <a href="/donation/{{ $donationlist ->id }}/edit" class="btn btn-sm btn-primary">Edit</button>
+                                    <a href="/donation/{{ $donationlist ->id }}" class="btn btn-sm btn-danger btn-primary" >Delete</button>
                                     </td>
                                 </tr>
                               </a>
 
                               @endforeach
-                            @endif --}}
+                            @endif
                       </tbody>
               </table>
             </div>

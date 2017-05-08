@@ -16,12 +16,16 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
         "tcg/voyager": "^0.11.9",
-        "twbs/bootstrap": "^3.3"
+        "twbs/bootstrap": "^3.3",
+        "laracasts/presenter": "0.1.*",
+        "folklore/graphql": "~1.0.0"
+
     },
     "require-dev": {
-        "fzaninotto\/faker": "~1.4",
-        "mockery\/mockery": "0.9.*",
-        "phpunit\/phpunit": "~5.7"
+        "fzaninotto/faker": "~1.4",
+        "laracasts/generators": "^1.1",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~5.7"
     },
     "autoload": {
         "classmap": [

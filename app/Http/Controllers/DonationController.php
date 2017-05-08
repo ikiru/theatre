@@ -30,10 +30,15 @@ class DonationController extends Controller
         }else{
           $donations = Donation::where('school_id', Auth::user()->pluck('id'))->pluck('name','id');
           $donors = Donor::where('school_id', Auth::user()->pluck('school_id'))->pluck('business_name','id');
+          $donationlists = Donor::where('school_id', Auth::user()->pluck('school_id'))
+            ->join('donations','donor_id','=','donations.donor_id')
+            ->join('donors','id','=','donors.id')
+            ->select('user_id','donors.firstname','donors.lastname','donors.business_name','value')
+            ->get();
 
         }
-
-        return view('portal.booster.donation', compact('type','donations','donors'));
+        dd($donationlists);
+        return view('portal.booster.donation', compact('type','donations','donors','donationlists'));
 
     }
 
