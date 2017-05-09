@@ -9,6 +9,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 /*
 |--------------------------------------------------------------------------
 | Frontend Routes
@@ -23,6 +25,7 @@ Route::get('/news',function(){return view('news');});
 Route::get('/about',function(){return view('about');});
 Route::get('/welcome',function(){return view('welcome');});
 // Route::get('{slug}','PageController@show');
+
 /*
 |--------------------------------------------------------------------------
 | Voyager Routes
@@ -53,9 +56,12 @@ Route::resource('/cast','CastlistController');
 Route::resource('/auditionf','AuditionController');
 Route::resource('/dnote','DirectorNoteController');
 Route::resource('/conflicts','ConflictController');
+
 /*
 |--------------------------------------------------------------------------
-|Ajax
+|Graphiql
 |--------------------------------------------------------------------------
 |
 */
+
+Route::get('/graphiql',function(){return view('vendor.graphiql.index');});

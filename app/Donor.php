@@ -1,4 +1,4 @@
-<?php
+use Nuwave\Lighthouse\Support\Traits\RelayConnection;<?php
 
 namespace App;
 

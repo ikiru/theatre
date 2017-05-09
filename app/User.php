@@ -9,6 +9,7 @@ use App\School;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Nuwave\Lighthouse\Support\Traits\RelayConnection;
 
 class User extends Authenticatable
 {

@@ -5,7 +5,7 @@ namespace App;
 use App\Donor;
 use App\Donationtype;
 use Illuminate\Database\Eloquent\Model;
-
+use Nuwave\Lighthouse\Support\Traits\RelayConnection;
 
 class Donation extends Model
 {
